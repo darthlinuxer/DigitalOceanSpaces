@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "zrr7I1XlaLOjpQk5hpS1ChEFtMVJ1chMVvq4I9mDe6A4AwX1f8CfyY755lz1LDl4ghBvOq4oK/5kn2+nCvTb+g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\chave\\dev\\DigitalOceanSpaces\\src\\Spaces\\spaces.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\chave\\.nuget\\packages\\awssdk.core\\3.7.13.13\\awssdk.core.3.7.13.13.nupkg.sha512",
+    "C:\\Users\\chave\\.nuget\\packages\\awssdk.s3\\3.7.9.62\\awssdk.s3.3.7.9.62.nupkg.sha512",
+    "C:\\Users\\chave\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512"
+  ],
+  "logs": []
+}
