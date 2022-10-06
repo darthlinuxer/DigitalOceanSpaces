@@ -4,30 +4,30 @@ public partial class Spaces
 {
     private static void WriteProfile(string profileName, string keyId, string secret, RegionEndpoint region)
     {
-        Console.WriteLine($"Create the [{profileName}] profile...");
+        Console.WriteLine(value: $"Create the [{profileName}] profile...");
         var options = new CredentialProfileOptions { AccessKey = keyId, SecretKey = secret };
-        var profile = new CredentialProfile(profileName, options)
+        var profile = new CredentialProfile(name: profileName, profileOptions: options)
         {
             Region = region,
             MaxAttempts = 3
         };
 
         var sharedFile = new SharedCredentialsFile();
-        sharedFile.RegisterProfile(profile);
+        sharedFile.RegisterProfile(profile: profile);
     }
 
     public static void SaveStreamAsFile(string filePath, Stream inputStream, string fileName)
     {
-        DirectoryInfo info = new DirectoryInfo(filePath);
+        DirectoryInfo info = new DirectoryInfo(path: filePath);
         if (!info.Exists)
         {
             info.Create();
         }
 
-        string path = Path.Combine(filePath, fileName);
-        using (FileStream outputFileStream = new FileStream(path, FileMode.Create))
+        string path = Path.Combine(path1: filePath, path2: fileName);
+        using (FileStream outputFileStream = new FileStream(path: path, mode: FileMode.Create))
         {
-            inputStream.CopyTo(outputFileStream);
+            inputStream.CopyTo(destination: outputFileStream);
         }
     }
 }

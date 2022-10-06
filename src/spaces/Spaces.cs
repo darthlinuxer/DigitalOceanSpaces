@@ -11,23 +11,23 @@ public partial class Spaces
         */
         var sharedFile = new SharedCredentialsFile();
 
-        if (!sharedFile.TryGetProfile(profileName, out CredentialProfile profile))
+        if (!sharedFile.TryGetProfile(profileName: profileName, profile: out CredentialProfile profile))
         {
-            sharedFile.UnregisterProfile(profileName);
+            sharedFile.UnregisterProfile(profileName: profileName);
         }
 
-        var amazonRegion = RegionEndpoint.GetBySystemName(region);
-        WriteProfile(profileName, keyId, secret, amazonRegion ?? RegionEndpoint.USEast1);
+        var amazonRegion = RegionEndpoint.GetBySystemName(systemName: region);
+        WriteProfile(profileName: profileName, keyId: keyId, secret: secret, region: amazonRegion ?? RegionEndpoint.USEast1);
 
-        AWSCredentialsFactory.TryGetAWSCredentials(profile, sharedFile, out AWSCredentials credentials);
+        AWSCredentialsFactory.TryGetAWSCredentials(profile: profile, profileSource: sharedFile, credentials: out AWSCredentials credentials);
         AmazonS3Config amazonS3Config = new()
         {
             ServiceURL = endpoint,
-            Timeout = TimeSpan.FromSeconds(10),
+            Timeout = TimeSpan.FromSeconds(value: 10),
             RetryMode = RequestRetryMode.Standard,
             MaxErrorRetry = 3
         };
-        S3Client = new AmazonS3Client(credentials, amazonS3Config);
+        S3Client = new AmazonS3Client(credentials: credentials, clientConfig: amazonS3Config);
     }
 
     public async Task<List<string>?> ListBucketsAsync()
@@ -35,45 +35,45 @@ public partial class Spaces
         try
         {
             var buckets = await this.S3Client.ListBucketsAsync();
-            return buckets.Buckets.Select(c => c.BucketName).ToList();
+            return buckets.Buckets.Select(selector: c => c.BucketName).ToList();
         }
         catch (AmazonS3Exception e)
         {
             Console.WriteLine(
-                "Error encountered ***. Message:'{0}' when writing an object"
-                , e.Message);
+                format: "Error encountered ***. Message:'{0}' when writing an object"
+                , arg0: e.Message);
             return null;
         }
         catch (Exception e)
         {
             Console.WriteLine(
-                "Unknown encountered on server. Message:'{0}' when writing an object"
-                , e.Message);
+                format: "Unknown encountered on server. Message:'{0}' when writing an object"
+                , arg0: e.Message);
             return null;
         }
     }
 
-    public async Task<bool> DoesBucketExistAsync(string bucket) => await this.S3Client.DoesS3BucketExistAsync(bucket);
+    public async Task<bool> DoesBucketExistAsync(string bucket) => await this.S3Client.DoesS3BucketExistAsync(bucketName: bucket);
 
     public async Task<List<string?>?> GetAllObjectKeysAsync(string bucket, string? prefix = null)
     {
         try
         {
-            var response = await this.S3Client.ListObjectsAsync(bucket, prefix);
-            return response.S3Objects.Select(c => c?.Key).ToList();
+            var response = await this.S3Client.ListObjectsAsync(bucketName: bucket, prefix: prefix);
+            return response.S3Objects.Select(selector: c => c?.Key).ToList();
         }
         catch (AmazonS3Exception e)
         {
             Console.WriteLine(
-                "Error encountered ***. Message:'{0}' when writing an object"
-                , e.Message);
+                format: "Error encountered ***. Message:'{0}' when writing an object"
+                , arg0: e.Message);
             return null;
         }
         catch (Exception e)
         {
             Console.WriteLine(
-                "Unknown encountered on server. Message:'{0}' when writing an object"
-                , e.Message);
+                format: "Unknown encountered on server. Message:'{0}' when writing an object"
+                , arg0: e.Message);
             return null;
         }
     }
@@ -82,21 +82,21 @@ public partial class Spaces
     {
         try
         {
-            var response = await this.S3Client.GetObjectAsync(bucket, key);
+            var response = await this.S3Client.GetObjectAsync(bucketName: bucket, key: key);
             return response.ResponseStream;
         }
         catch (AmazonS3Exception e)
         {
             Console.WriteLine(
-                "Error encountered ***. Message:'{0}' when writing an object"
-                , e.Message);
+                format: "Error encountered ***. Message:'{0}' when writing an object"
+                , arg0: e.Message);
             return null;
         }
         catch (Exception e)
         {
             Console.WriteLine(
-                "Unknown encountered on server. Message:'{0}' when writing an object"
-                , e.Message);
+                format: "Unknown encountered on server. Message:'{0}' when writing an object"
+                , arg0: e.Message);
             return null;
         }
     }
@@ -113,21 +113,21 @@ public partial class Spaces
                 ContentType = contentType
             };
 
-            PutObjectResponse response = await S3Client.PutObjectAsync(putRequest);
+            PutObjectResponse response = await S3Client.PutObjectAsync(request: putRequest);
             return response.HttpStatusCode;
         }
         catch (AmazonS3Exception e)
         {
             Console.WriteLine(
-                    "Error encountered ***. Message:'{0}' when writing an object"
-                    , e.Message);
+                    format: "Error encountered ***. Message:'{0}' when writing an object"
+                    , arg0: e.Message);
             return HttpStatusCode.BadRequest;
         }
         catch (Exception e)
         {
             Console.WriteLine(
-                "Unknown encountered on server. Message:'{0}' when writing an object"
-                , e.Message);
+                format: "Unknown encountered on server. Message:'{0}' when writing an object"
+                , arg0: e.Message);
             return HttpStatusCode.BadRequest;
         }
     }
@@ -140,7 +140,7 @@ public partial class Spaces
             foreach (string key in keys)
             {
                 var keyVersion = new KeyVersion() { Key = key };
-                versions.Add(keyVersion);
+                versions.Add(item: keyVersion);
             }
 
             var multiObjectRequest = new DeleteObjectsRequest
@@ -148,21 +148,21 @@ public partial class Spaces
                 BucketName = bucketName,
                 Objects = versions
             };
-            DeleteObjectsResponse delObjRes = await S3Client.DeleteObjectsAsync(multiObjectRequest);
+            DeleteObjectsResponse delObjRes = await S3Client.DeleteObjectsAsync(request: multiObjectRequest);
             return delObjRes.HttpStatusCode;
         }
         catch (AmazonS3Exception e)
         {
             Console.WriteLine(
-                "Error encountered ***. Message:'{0}' when writing an object"
-                , e.Message);
+                format: "Error encountered ***. Message:'{0}' when writing an object"
+                , arg0: e.Message);
             return HttpStatusCode.BadRequest;
         }
         catch (Exception e)
         {
             Console.WriteLine(
-                "Unknown encountered on server. Message:'{0}' when writing an object"
-                , e.Message);
+                format: "Unknown encountered on server. Message:'{0}' when writing an object"
+                , arg0: e.Message);
             return HttpStatusCode.BadRequest;
         }
     }
@@ -172,21 +172,21 @@ public partial class Spaces
         try
         {
             var DeleteObjectRequest = new DeleteObjectRequest { BucketName = bucketName, Key = key };
-            DeleteObjectResponse delObjRes = await S3Client.DeleteObjectAsync(DeleteObjectRequest);
+            DeleteObjectResponse delObjRes = await S3Client.DeleteObjectAsync(request: DeleteObjectRequest);
             return delObjRes.HttpStatusCode;
         }
         catch (AmazonS3Exception e)
         {
             Console.WriteLine(
-                "Error encountered ***. Message:'{0}' when writing an object"
-                , e.Message);
+                format: "Error encountered ***. Message:'{0}' when writing an object"
+                , arg0: e.Message);
             return HttpStatusCode.BadRequest;
         }
         catch (Exception e)
         {
             Console.WriteLine(
-                "Unknown encountered on server. Message:'{0}' when writing an object"
-                , e.Message);
+                format: "Unknown encountered on server. Message:'{0}' when writing an object"
+                , arg0: e.Message);
             return HttpStatusCode.BadRequest;
         }
     }
@@ -199,22 +199,22 @@ public partial class Spaces
             {
                 BucketName = bucketName,
                 Key = key,
-                Expires = DateTime.UtcNow.AddSeconds(durationInSeconds)
+                Expires = DateTime.UtcNow.AddSeconds(value: durationInSeconds)
             };
-            return S3Client.GetPreSignedURL(request);
+            return S3Client.GetPreSignedURL(request: request);
         }
         catch (AmazonS3Exception e)
         {
             Console.WriteLine(
-                "Error encountered ***. Message:'{0}' when writing an object"
-                , e.Message);
+                format: "Error encountered ***. Message:'{0}' when writing an object"
+                , arg0: e.Message);
             return null;
         }
         catch (Exception e)
         {
             Console.WriteLine(
-                "Unknown encountered on server. Message:'{0}' when writing an object"
-                , e.Message);
+                format: "Unknown encountered on server. Message:'{0}' when writing an object"
+                , arg0: e.Message);
             return null;
         }
     }
