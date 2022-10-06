@@ -1,0 +1,69 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "spaces/1.0.0": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.13.13",
+          "AWSSDK.S3": "3.7.9.62",
+          "StyleCop.Analyzers": "1.1.118"
+        },
+        "runtime": {
+          "spaces.dll": {}
+        }
+      },
+      "AWSSDK.Core/3.7.13.13": {
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.13.13"
+          }
+        }
+      },
+      "AWSSDK.S3/3.7.9.62": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.13.13"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.S3.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.9.62"
+          }
+        }
+      },
+      "StyleCop.Analyzers/1.1.118": {}
+    }
+  },
+  "libraries": {
+    "spaces/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AWSSDK.Core/3.7.13.13": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-q/d45lJuJywgOgIsKuQnDMDUnxH0HkydI8jVSGgYBthFzRubYa2tKa3qbV+yl2xTvebCzA9Qyv2/jWXGWejMOA==",
+      "path": "awssdk.core/3.7.13.13",
+      "hashPath": "awssdk.core.3.7.13.13.nupkg.sha512"
+    },
+    "AWSSDK.S3/3.7.9.62": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6WCeK8/U0VzpW3pxdjqejvPozKPZ+lEd2gVLaAkgLbP9uRHTDuoCrWTgYFvkDeSJJL4F0DTgYRyjwNaGFXoW3w==",
+      "path": "awssdk.s3/3.7.9.62",
+      "hashPath": "awssdk.s3.3.7.9.62.nupkg.sha512"
+    },
+    "StyleCop.Analyzers/1.1.118": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Onx6ovGSqXSK07n/0eM3ZusiNdB6cIlJdabQhWGgJp3Vooy9AaLS/tigeybOJAobqbtggTamoWndz72JscZBvw==",
+      "path": "stylecop.analyzers/1.1.118",
+      "hashPath": "stylecop.analyzers.1.1.118.nupkg.sha512"
+    }
+  }
+}

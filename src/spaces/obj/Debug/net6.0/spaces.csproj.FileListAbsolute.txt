@@ -1,0 +1,12 @@
+C:\Users\chave\dev\DigitalOceanSpaces\src\spaces\bin\Debug\net6.0\spaces.deps.json
+C:\Users\chave\dev\DigitalOceanSpaces\src\spaces\bin\Debug\net6.0\spaces.dll
+C:\Users\chave\dev\DigitalOceanSpaces\src\spaces\bin\Debug\net6.0\spaces.pdb
+C:\Users\chave\dev\DigitalOceanSpaces\src\spaces\obj\Debug\net6.0\spaces.csproj.AssemblyReference.cache
+C:\Users\chave\dev\DigitalOceanSpaces\src\spaces\obj\Debug\net6.0\spaces.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\chave\dev\DigitalOceanSpaces\src\spaces\obj\Debug\net6.0\spaces.AssemblyInfoInputs.cache
+C:\Users\chave\dev\DigitalOceanSpaces\src\spaces\obj\Debug\net6.0\spaces.AssemblyInfo.cs
+C:\Users\chave\dev\DigitalOceanSpaces\src\spaces\obj\Debug\net6.0\spaces.csproj.CoreCompileInputs.cache
+C:\Users\chave\dev\DigitalOceanSpaces\src\spaces\obj\Debug\net6.0\spaces.dll
+C:\Users\chave\dev\DigitalOceanSpaces\src\spaces\obj\Debug\net6.0\refint\spaces.dll
+C:\Users\chave\dev\DigitalOceanSpaces\src\spaces\obj\Debug\net6.0\spaces.pdb
+C:\Users\chave\dev\DigitalOceanSpaces\src\spaces\obj\Debug\net6.0\ref\spaces.dll

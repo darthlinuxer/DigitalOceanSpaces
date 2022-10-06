@@ -1,0 +1,13 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=44991441_002D3cae_002D4481_002Db947_002Db59502af4e5e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="UploadObjectAsync" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;MSTest::822866DA-C694-4EF3-A775-E3FE8775AA2C::net6.0::SpacesTest.SpacesUnitTest.UploadObjectAsync&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::822866DA-C694-4EF3-A775-E3FE8775AA2C::net6.0::SpacesTest.SpacesUnitTest.DeleteObjectAsync&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::822866DA-C694-4EF3-A775-E3FE8775AA2C::net6.0::SpacesTest.SpacesUnitTest.GetObjectUrl&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d3907bfb_002Dafd8_002D42f9_002D8b01_002D5d55a5f591e0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="DeleteObjectAsync" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;MSTest::822866DA-C694-4EF3-A775-E3FE8775AA2C::net6.0::SpacesTest.SpacesUnitTest.DeleteObjectAsync&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
