@@ -14,7 +14,7 @@ public class SpacesUnitTest
         var endpoint = "https://nyc3.digitaloceanspaces.com";
         var key = "yourKey";
         var secret = "yourSecret";
-        spaces = new Spaces(keyId: key, secret: secret, endpoint: endpoint, region: "us-east-1", profileName: "default");
+        spaces = new Spaces(keyId: key, secret: secret, endpoint: endpoint);
     }
 
     [TestMethod]

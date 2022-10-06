@@ -1,32 +1,30 @@
-﻿namespace DigitalOceanSpaces;
+﻿using Amazon.Runtime.CredentialManagement;
+using Amazon.Runtime.CredentialManagement.Internal;
+using Amazon.Util;
+
+namespace DigitalOceanSpaces;
 
 public partial class Spaces
 {
     public IAmazonS3 S3Client { get; set; }
 
-    public Spaces(string keyId, string secret, string endpoint, string region = "us-east-1", string profileName = "default")
+    public Spaces(string keyId, string secret, string endpoint)
     {
         /*
         By default, the shared AWS credentials file is located in the .aws directory within your home directory and is named credentials; that is, ~/.aws/credentials (Linux or macOS) or %USERPROFILE%\.aws\credentials (Windows).
         */
-        var sharedFile = new SharedCredentialsFile();
+        var options = new CredentialProfileOptions { AccessKey = keyId, SecretKey = secret };
 
-        if (!sharedFile.TryGetProfile(profileName: profileName, profile: out CredentialProfile profile))
-        {
-            sharedFile.UnregisterProfile(profileName: profileName);
-        }
+        var credentials = new BasicAWSCredentials(options.AccessKey, options.SecretKey);
 
-        var amazonRegion = RegionEndpoint.GetBySystemName(systemName: region);
-        WriteProfile(profileName: profileName, keyId: keyId, secret: secret, region: amazonRegion ?? RegionEndpoint.USEast1);
-
-        AWSCredentialsFactory.TryGetAWSCredentials(profile: profile, profileSource: sharedFile, credentials: out AWSCredentials credentials);
-        AmazonS3Config amazonS3Config = new()
+        AmazonS3Config amazonS3Config = new ()
         {
             ServiceURL = endpoint,
             Timeout = TimeSpan.FromSeconds(value: 10),
             RetryMode = RequestRetryMode.Standard,
             MaxErrorRetry = 3
         };
+        
         S3Client = new AmazonS3Client(credentials: credentials, clientConfig: amazonS3Config);
     }
 
